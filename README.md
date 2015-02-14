@@ -7,3 +7,5 @@ This code developed by crystalclaw, geocentric249, kaydenjohn24, and YourUncleRi
 Official Start Date: Feb 14, 2015
 
 Predicted Launch Date: undefined
+
+Should be at least started by: Feb 15, 2015
