@@ -2,14 +2,14 @@
 create class 'Network'
 1969  contains- fucntions for reception and sending of packets, whole network, timestamp included.
 =end
-require 'socket'                # Get sockets from stdlib
+require 'socket'                
 
-server = TCPServer.open(1969)   # Socket to listen on port 2000
+server = TCPServer.open(1969)   
 loop {                          # Servers run forever
   Thread.start(server.accept) do |client|
     client.puts(Time.now.strftime("%Y-%m-%d %H:%M:%S.%L")) # Send the time to the client
     client.puts(request_packet)
-    client.puts "Packet_Sent"
+    client.puts "Packet_Sent" # Will allow for network checks
     client.close                
   end
 }
