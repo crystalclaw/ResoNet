@@ -1,2 +1,2 @@
 loop{
-puts Time.now.strftime("%Y-%m-%d %H:%M:%S.%L")}
+print Time.now.strftime("%Y-%m-%d %H:%M:%S.%L\r\n")}
