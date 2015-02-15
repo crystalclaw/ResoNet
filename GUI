@@ -1,0 +1,29 @@
+#simple GUI
+from tkinter import *
+#create the window
+root = Tk()
+
+#modify root window
+root.title("simple GUI")
+root.geometry("450x450")
+
+mEntry = Entry
+ment = StringVar()
+app = Frame(root)
+app.grid()
+label = Label(app, text = "Welcome to ResoNet!")
+
+label.grid()
+
+
+mEntry = Entry(root, textvariable=ment).grid()
+
+app = Frame(root)
+app.grid()
+button = Button(app, text = "First Button")
+button.grid()
+
+
+#kick off the event loop
+root.mainloop()
+
