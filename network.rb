@@ -8,6 +8,7 @@ require 'socket'
 require 'thread'
 ssock = TCPServer.new(1233)
 msgs = Queue.new
+timestamp = Time.now.strftime("%Y-%m-%d %H:%M:%S.%L")
 participants = []
 Thread.start do
   while msg = msgs.pop
@@ -33,3 +34,4 @@ loop do
   end
   puts participants.to_s
 end
+puts [participants, timestamp]
