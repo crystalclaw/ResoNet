@@ -14,5 +14,5 @@ loop {
 require 'socket'
 servant = TCPSocket.new('', 9691) # could replace 127.0.0.1 with your "real" IP if desired.
 servant.write "Data Pitched"
-puts "got back:" + servant.recv(1969)
+puts "Data Got:" + servant.recv(1969)
 servant.close
