@@ -8,7 +8,9 @@ require 'socket'
 require 'thread'
 ssock = TCPServer.new(1233)
 msgs = Queue.new
-timestamp = Time.now.strftime("%Y-%m-%d %H:%M:%S.%L")
+def timestamp
+  Time.now.strftime("%Y-%m-%d %H:%M:%S.%L")
+end
 participants = []
 Thread.start do
   while msg = msgs.pop
