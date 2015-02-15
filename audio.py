@@ -11,6 +11,8 @@ def callback(in_data, frame_count, time_info, status_flags):
     else
         out_data = audioBuffer[timestamp]
         audioBuffer.pop(timestamp)
-    return (out_data, flag)
+    return (out_data, pyaudio.paContinue)
 def add_audio_data(frames, timestamp):
     audioBuffer[timestamp] = frames
+stream = pyaud.open(format=paInt32, channels=2, rate=1440, output=True, stream_callback=callback)
+stream.start_stream()
