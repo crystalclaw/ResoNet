@@ -5,7 +5,7 @@ ssock = ss
 msgs = Queue.new
 participants = []
 Thread.start {
-  while msg == msgs.pop
+  while msg = msgs.pop
     participants.each { |s|
       (s << msg).flush rescue IOError
     }
