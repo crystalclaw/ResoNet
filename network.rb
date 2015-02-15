@@ -6,7 +6,7 @@ this will be easier later on, hopeully. but we have something to work with.
 =end
 require 'socket'
 require 'thread'
-require 'yaml'
+require 'json'
 ssock = TCPServer.new(1233)
 msgs = Queue.new
 def timestamp
@@ -28,10 +28,10 @@ loop do
                 #msgs << "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
                 #puts "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
                 #puts (timestamp - line.to_f).to_s
-                tempdata = YAML.load(line.chomp!)
-                tempdata[:timestamp] = timestamp + 2
+                tempdata = JSON.parse(line.chomp!)
+                tempdata["timestamp"] = timestamp + 2
                 #FIXME: make this not hardcoded
-                msgs << YAML.dump(tempdata)
+                msgs << JSON.generate(tempdata)
 #        line = line.chomp!
 #        ts = timestamp
       end

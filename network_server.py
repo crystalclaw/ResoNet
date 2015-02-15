@@ -3,9 +3,11 @@ import time
 import pyaudio
 import wave
 import sys
-import yaml
+import json
+import base64
+
 CHUNK = 1024
-FILE = #stuff
+FILE = "/Users/Crystalclaw/github/ResoNet/test.wav"
 
 ip_addr="localhost"
 soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -17,6 +19,6 @@ wf = wave.open(FILE, 'rb')
 data = wf.readframes(CHUNK)
 
 while data != '':
-    soc.send(yaml.dump({:frames => data}))
+    soc.send(json.dumps({"frames" : base64.b64encode(data)}))
     data = wf.readframes(CHUNK)
 soc.close()

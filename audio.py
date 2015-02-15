@@ -2,8 +2,9 @@ import pyaudio
 from sortedcontainers import SortedDict
 import socket
 import time
-import yaml
+import json
 import threading
+import base64
 
 def network_thread():
     ip_addr="localhost"
@@ -11,9 +12,9 @@ def network_thread():
     port = 1233
     soc.setblocking(1)
     soc.connect((ip_addr, port))
-    while true do:
-        tempdata = yaml.load(soc.recv(4096)))
-        add_audio_data(tempdata[:frames], tempdata[:timestamp])
+    while true:
+        tempdata = json.loads(soc.recv(4096))
+        add_audio_data(base64.b64decode(tempdata["frames"]), tempdata["timestamp"])
     soc.close()
 
 netthread = threading.Thread(None, network_thread, "net-thread")
@@ -28,7 +29,7 @@ def callback(in_data, frame_count, time_info, status_flags):
         out_stamp = audioBuffer[audioBuffer.bisect_right(timestamp)]
         out_data = audioBuffer[out_stamp]
         audioBuffer.pop(out_stamp)
-    else
+    else:
         out_data = audioBuffer[timestamp]
         audioBuffer.pop(timestamp)
     return (out_data, pyaudio.paContinue)
