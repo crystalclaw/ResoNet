@@ -4,12 +4,14 @@ connection_closed = false
 require 'socket'
 servant = TCPServer.new('localhost', port1)
 servoid = TCPServer.new('localhost', port2)
+puts 'Running Program'
 loop do
   until connection_closed == true
     connection = servoid.accept
     if servoid.accept then
     connection.write 'received connection'
-    connection.close + connection_closed = true
+    connection.close
+    connection_closed = true
     end
   servant.write 'Data Pitched'
   puts 'Data Got: ' + servant.recv(port2)
