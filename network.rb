@@ -12,8 +12,8 @@ loop do
   until quit1 == true
     connection = servoid.accept
     puts connection
-    if connection
-      puts 'received: ' + connection.recv(port1)
+    if connection.recv(port1)
+     then puts 'received connection'
       connection.write 'Data Caught'
       connection.close
     else
