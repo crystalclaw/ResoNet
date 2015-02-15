@@ -8,9 +8,11 @@ quit1 = false
 require 'socket'
 servant = TCPSocket.new('localhost', port1)
 servoid = TCPServer.new('localhost', port2)
-loop {
+loop do
   until quit1 == true
-    if connection = servoid.accept
+    connection = servoid.accept
+    puts connection
+    if connection
       puts 'received: ' + connection.recv(port1)
       connection.write 'Data Caught'
       connection.close
@@ -20,4 +22,4 @@ loop {
     servant.write 'Data Pitched'
     puts 'Data Got: ' + servant.recv(port2)
   end
-}
+end
