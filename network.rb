@@ -2,15 +2,17 @@
 create class 'Network'
 1969  contains- fucntions for reception and sending of packets, whole network, timestamp included.
 =end
-require 'socket'                
-
-server = TCPServer.open(1969)   
-loop {                          # Servers run forever
-  Thread.start(server.accept) do |client|
-    client.puts(Time.now.strftime("%Y-%m-%d %H:%M:%S.%L")) # Send the time to the client
-    client.puts(request_packet)
-    client.puts "Packet_Sent" # Will allow for network checks
-    client.close                
-  end
+require 'socket'
+servoid = TCPServer.new('', 1969) # '' means to bind to "all interfaces", same as nil or '0.0.0.0'
+loop {
+  connection = a.accept
+  puts "received:" + connection.recv(9691)
+  connection.write 'Data Caught'
+  connection.close
 }
-open_socket.close
+
+require 'socket'
+servant = TCPSocket.new('', 9691) # could replace 127.0.0.1 with your "real" IP if desired.
+servant.write "Data Pitched"
+puts "got back:" + servant.recv(1969)
+servant.close
