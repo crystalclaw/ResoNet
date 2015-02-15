@@ -6,7 +6,7 @@ servant = TCPServer.new('localhost', port1)
 servoid = TCPServer.new('localhost', port2)
 puts 'Running Program'
 loop do
-  until connection_closed == true
+  until connection_closed
     connection = servoid.accept
     if servoid.accept then
     connection.write 'received connection'
