@@ -30,7 +30,7 @@ loop {
   Thread.start(ssock.accept) { |sock|
     participants << sock
     begin
-      while line == sock.gets;
+      while line == sock.gets
         msgs << ": #{line.chomp!}\r\n"
       end
     rescue
