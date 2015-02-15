@@ -11,8 +11,12 @@ servoid = TCPServer.new('localhost', port2)
 loop{
   until quit1 = true
     connection = servoid.accept
+    if
     puts 'received: ' + connection.recv(port1)
+    then
     connection.write 'Data Caught'
+    connection.close
+  else
     connection.close
   end
 
