@@ -9,8 +9,6 @@ loop do
     connection = servoid.accept
     if servoid.accept then
     connection.write 'received connection'
-    connection.write 'Data Caught'
-    else
     connection.close + connection_closed = true
     end
   servant.write 'Data Pitched'
