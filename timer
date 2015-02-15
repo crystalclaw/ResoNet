@@ -1,2 +1,1 @@
-loop{
-print Time.now.strftime("%Y-%m-%d %H:%M:%S.%L\r")}
+loop{print Time.now.strftime("%Y-%m-%d %H:%M:%S.%L\r")}

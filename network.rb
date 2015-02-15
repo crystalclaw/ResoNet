@@ -6,6 +6,7 @@ this will be easier later on, hopeully. but we have something to work with.
 =end
 require 'socket'
 require 'thread'
+require 'yaml'
 ssock = TCPServer.new(1233)
 msgs = Queue.new
 def timestamp
@@ -24,8 +25,11 @@ loop do
     participants << sock
     begin
       while line = sock.gets
-        msgs << "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
-        puts "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
+        #        msgs << "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
+        #        puts "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
+        line = line.chomp!
+        ts = timestamp
+        msgs << YAML.dump({:ctime => line, :stime => ts, :latency => (ts - line.to_i)})
       end
     rescue
       bt = $!.backtrace * "\n  "
