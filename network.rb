@@ -1,7 +1,12 @@
+=begin
+WELL, this shit took way too long. 
+Can we please get something to automatically connect, and stream data through this?
+this will be easier later on, hopeully. but we have something to work with.
+18 errors and it works.
+=end
 require 'socket'
 require 'thread'
-ss = TCPServer.new(1233)
-ssock = ss
+ssock = TCPServer.new(1233)
 msgs = Queue.new
 participants = []
 Thread.start {
