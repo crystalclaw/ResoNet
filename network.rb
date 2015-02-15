@@ -16,7 +16,7 @@ loop {
   }
 }
 
-ssock = TCPServer.new(1234)
+ssock = TCPServer.new(1233)
 msgs = Queue.new
 participants = []
 Thread.start {
