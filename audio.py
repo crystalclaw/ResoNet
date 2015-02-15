@@ -3,7 +3,7 @@ from sortedcontainers import SortedDict
 pyaud = pyaudio.Pyaudio()
 audioBuffer = SortedDict()
 def callback(in_data, frame_count, time_info, status_flags):
-    timestamp = 0
+    timestamp = time_info[output_buffer_dac_time] + pyaud.get_output_latency()
     if audioBuffer[timestamp] == nil:
         out_stamp = audioBuffer[audioBuffer.bisect_right(timestamp)]
         out_data = audioBuffer[out_stamp]
