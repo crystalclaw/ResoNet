@@ -1,4 +1,4 @@
-=begin
+
 port1 = 256
 port2 = 255
 quit1 = false
@@ -20,8 +20,7 @@ loop do
     puts 'Data Got: ' + servant.recv(port2)
   end
 end
-=end
-
+=begin
 require 'socket'  # TCPServer
 ss = TCPServer.new(1233)
 loop {
@@ -38,3 +37,4 @@ loop {
     end
   }
 }
+=end
