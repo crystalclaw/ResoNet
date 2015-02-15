@@ -6,7 +6,7 @@ port1 = 256
 port2 = 255
 quit1 = false
 require 'socket'
-servant = TCPSocket.new('localhost', port1)
+servant = TCPServer.new('localhost', port1)
 servoid = TCPServer.new('localhost', port2)
 loop do
   until quit1 == true
