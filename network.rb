@@ -10,7 +10,7 @@ require 'yaml'
 ssock = TCPServer.new(1233)
 msgs = Queue.new
 def timestamp
-  Time.now.strftime("%Y-%m-%d %H:%M:%S.%L")
+  Time.now.to_f
 end
 participants = []
 Thread.start do
@@ -25,11 +25,12 @@ loop do
     participants << sock
     begin
       while line = sock.gets
-        #        msgs << "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
-        #        puts "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
-        line = line.chomp!
-        ts = timestamp
-        msgs << YAML.dump({:ctime => line, :stime => ts, :latency => (ts - line.to_i)})
+                msgs << "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
+                puts "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
+                puts (timestamp - line.to_f).to_s
+#        line = line.chomp!
+#        ts = timestamp
+#        msgs << YAML.dump({:ctime => line, :stime => ts, :latency => (ts - line.to_i)})
       end
     rescue
       bt = $!.backtrace * "\n  "
