@@ -7,7 +7,9 @@ servant = TCPServer.new('localhost', port1)
 servoid = TCPServer.new('localhost', port2)
 loop do
   until quit1 == true
-    puts connection
+  connection = servoid.accept
+    if connnection.recv(port1)
+      or
     if Thread.start(servoid.accept)
      then puts 'received connection'
       connection.write 'Data Caught'
