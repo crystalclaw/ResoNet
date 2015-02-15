@@ -2,17 +2,18 @@
 create class 'Network'
 1969  contains- fucntions for reception and sending of packets, whole network, timestamp included.
 =end
-
+port1= 256
+port2= 255
 require 'socket'
-servant = TCPSocket.new('localhost', 1691)
-servoid = TCPServer.new('localhost', 1969)
+servant = TCPSocket.new('localhost', port1)
+servoid = TCPServer.new('localhost', port2)
 loop{
   connection = servoid.accept
-  puts 'received: ' + connection.recv(1691)
+  puts 'received: ' + connection.recv(port1)
   connection.write 'Data Caught'
   connection.close
 
   servant.write 'Data Pitched'
-  puts 'Data Got: ' + servant.recv(1969)
+  puts 'Data Got: ' + servant.recv(port2)
   servant.close
 }
