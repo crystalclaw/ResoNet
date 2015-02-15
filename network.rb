@@ -8,12 +8,12 @@ loop do
   until connection_closed == true
     connection = servoid.accept
     if connection.start(servoid.accept) then
-      print 'received connection'
-      connection.write 'Data Caught'
+    connection.write 'received connection'
+    connection.write 'Data Caught'
     else
-      connection.close + connection_closed = true
+    connection.close + connection_closed = true
     end
-    servant.write 'Data Pitched'
-    puts 'Data Got: ' + servant.recv(port2)
+  servant.write 'Data Pitched'
+  puts 'Data Got: ' + servant.recv(port2)
   end
 end
