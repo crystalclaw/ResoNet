@@ -8,7 +8,7 @@ quit1 = false
 require 'socket'
 servant = TCPSocket.new('localhost', port1)
 servoid = TCPServer.new('localhost', port2)
-loop{
+
   until quit1 = true
     connection = servoid.accept
     if
@@ -18,9 +18,8 @@ loop{
     connection.close
   else
     connection.close
-  end
+
 
   servant.write 'Data Pitched'
   puts 'Data Got: ' + servant.recv(port2)
   servant.close
-}
