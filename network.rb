@@ -1,21 +1,6 @@
 require 'socket'
 require 'thread'
 ss = TCPServer.new(1233)
-loop {
-  Thread.start(ss.accept) { |s|
-    begin
-      while line = s.gets;
-        (s << "You wrote: #{line.inspect}\r\n").flush
-      end
-    rescue
-      bt = $!.backtrace * "\n  "
-      ($stderr << "error: #{$!.inspect}\n  #{bt}\n").flush
-    ensure
-      s.close
-    end
-  }
-}
-
 ssock = ss
 msgs = Queue.new
 participants = []
