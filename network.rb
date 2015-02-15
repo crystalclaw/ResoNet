@@ -4,8 +4,8 @@ create class 'Network'
 =end
 
 require 'socket'
-servant = TCPSocket.new('', 9691)
-servoid = TCPServer.new('', 1969)
+servant = TCPSocket.new('0.0.0.0', 9691)
+servoid = TCPServer.new('0.0.0.0', 1969)
 loop{
   connection = servoid.accept
   puts 'received: ' + connection.recv(9691)
