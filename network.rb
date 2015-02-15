@@ -1,9 +1,10 @@
-require 'socket'  # TCPServer
+require 'socket'  
+require 'thread' 
 ss = TCPServer.new(1233)
 loop {
   Thread.start(ss.accept) { |s|
     begin
-      while line = s.gets;  # Returns nil on EOF.
+      while line = s.gets; 
         (s << "You wrote: #{line.inspect}\r\n").flush
       end
     rescue
@@ -14,12 +15,12 @@ loop {
     end
   }
 }
-require 'thread'  # Queue
+
 ssock = TCPServer.new(1234)
 msgs = Queue.new
 participants = []
-Thread.start {  # Send chat messages to participants.
-  while msg = msgs.pop;  # Always true.
+Thread.start {  
+  while msg = msgs.pop;  
     participants.each { |s|
       (s << msg).flush rescue IOError
     }
@@ -29,7 +30,7 @@ loop {
   Thread.start(ssock.accept) { |sock|
     participants << sock
     begin
-      while line = sock.gets;  # Returns nil on EOF.
+      while line = sock.gets;  
         msgs << ": #{line.chomp!}\r\n"
       end
     rescue
