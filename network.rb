@@ -1,5 +1,5 @@
 =begin
-WELL, this shit took way too long. 
+WELL, this shit took way too long.
 Can we please get something to automatically connect, and stream data through this?
 this will be easier later on, hopeully. but we have something to work with.
 18 errors and it works.
@@ -9,15 +9,15 @@ require 'thread'
 ssock = TCPServer.new(1233)
 msgs = Queue.new
 participants = []
-Thread.start {
+Thread.start do
   while msg = msgs.pop
-    participants.each { |s|
+    participants.each do |s|
       (s << msg).flush rescue IOError
-    }
+    end
   end
-}
-loop {
-  Thread.start(ssock.accept) { |sock|
+end
+loop do
+  Thread.start(ssock.accept) do |sock|
     participants << sock
     begin
       while line = sock.gets
@@ -30,5 +30,5 @@ loop {
       participants.delete sock
       sock.close
     end
-  }
-}
+  end
+end
