@@ -1,7 +1,4 @@
 =begin
-create class 'Network'
-1969  contains- fucntions for reception and sending of packets, whole network, timestamp included.
-=end
 port1 = 256
 port2 = 255
 quit1 = false
@@ -23,3 +20,21 @@ loop do
     puts 'Data Got: ' + servant.recv(port2)
   end
 end
+=end
+
+require 'socket'  # TCPServer
+ss = TCPServer.new(1233)
+loop {
+  Thread.start(ss.accept) { |s|
+    begin
+      while line = s.gets;  # Returns nil on EOF.
+        (s << "You wrote: #{line.inspect}\r\n").flush
+      end
+    rescue
+      bt = $!.backtrace * "\n  "
+      ($stderr << "error: #{$!.inspect}\n  #{bt}\n").flush
+    ensure
+      s.close
+    end
+  }
+}
