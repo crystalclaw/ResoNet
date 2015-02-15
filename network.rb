@@ -25,6 +25,7 @@ loop do
     begin
       while line = sock.gets
         msgs << "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
+        puts "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
       end
     rescue
       bt = $!.backtrace * "\n  "
