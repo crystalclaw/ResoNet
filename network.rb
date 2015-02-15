@@ -21,7 +21,7 @@ loop do
     participants << sock
     begin
       while line = sock.gets
-        msgs << "#{sock}: #{line.chomp!}\r\n"
+        msgs << "#{sock.to_s}: #{line.chomp!}\r\n"
       end
     rescue
       bt = $!.backtrace * "\n  "
@@ -31,5 +31,5 @@ loop do
       sock.close
     end
   end
-  p participants
+  puts participants.to_s
 end
