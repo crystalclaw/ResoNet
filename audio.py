@@ -1,5 +1,23 @@
 import pyaudio
 from sortedcontainers import SortedDict
+import socket
+import time
+import yaml
+import threading
+
+def network_thread():
+    ip_addr="localhost"
+    soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    port = 1233
+    soc.setblocking(1)
+    soc.connect((ip_addr, port))
+    while true do:
+        tempdata = yaml.load(soc.recv(4096)))
+        add_audio_data(tempdata[:frames], tempdata[:timestamp])
+    soc.close()
+
+netthread = threading.Thread(None, network_thread, "net-thread")
+netthread.start()
 
 pyaud = pyaudio.Pyaudio()
 audioBuffer = SortedDict()

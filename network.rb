@@ -25,12 +25,15 @@ loop do
     participants << sock
     begin
       while line = sock.gets
-                msgs << "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
-                puts "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
-                puts (timestamp - line.to_f).to_s
+                #msgs << "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
+                #puts "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
+                #puts (timestamp - line.to_f).to_s
+                tempdata = YAML.load(line.chomp!)
+                tempdata[:timestamp] = timestamp + 2
+                #FIXME: make this not hardcoded
+                msgs << YAML.dump(tempdata)
 #        line = line.chomp!
 #        ts = timestamp
-#        msgs << YAML.dump({:ctime => line, :stime => ts, :latency => (ts - line.to_i)})
       end
     rescue
       bt = $!.backtrace * "\n  "
