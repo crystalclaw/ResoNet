@@ -6,12 +6,10 @@ this will be easier later on, hopeully. but we have something to work with.
 =end
 require 'socket'
 require 'thread'
-require 'json'
+
 ssock = TCPServer.new(1233)
 msgs = Queue.new
-def timestamp
-  Time.now.to_f
-end
+
 participants = []
 Thread.start do
   while msg = msgs.pop
@@ -25,15 +23,7 @@ loop do
     participants << sock
     begin
       while line = sock.gets
-                #msgs << "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
-                #puts "#{sock}|#{timestamp}: #{line.chomp!}\r\n"
-                #puts (timestamp - line.to_f).to_s
-                tempdata = JSON.parse(line.chomp!)
-                tempdata["timestamp"] = timestamp + 2
-                #FIXME: make this not hardcoded
-                msgs << JSON.generate(tempdata)
-#        line = line.chomp!
-#        ts = timestamp
+        msgs << line.chomp!
       end
     rescue
       bt = $!.backtrace * "\n  "
@@ -43,6 +33,4 @@ loop do
       sock.close
     end
   end
-  puts participants.to_s
 end
-puts [participants, timestamp]
