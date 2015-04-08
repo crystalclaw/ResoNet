@@ -1,7 +1,7 @@
 ![ResoNet](https://raw.githubusercontent.com/crystalclaw/ResoNet/master/ResoNet.png)
 
 Sound syncing over multiple computers, using merely the wifi already in your home.
-Version indev WIP 0.5a
+Version indev 0.0.5
 
 IRC: irc://freenode/geoset
 
