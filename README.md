@@ -12,3 +12,5 @@ Official Start Date: Feb 14, 2015
 Predicted Launch Date: undefined
 
 Should be at least started by: Feb 15, 2015
+
+A note: This was created for the CodeDay Hackathon
